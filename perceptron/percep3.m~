@@ -1,0 +1,32 @@
+function [ h ] = percep3(pt)
+
+data = load('iris.txt');
+yr=data(1:150);
+input=data(:,2:5);
+x=zeros(1,4);
+y=zeros(1,4);
+z=zeros(1,4);
+
+for i=1:150
+	if yr(i)==0
+		x=(x+input(i,:))/2;
+	endif
+	if yr(i)==1
+		y=(y+input(i,:))/2;
+	endif
+	if yr(i)==2
+		z=(z+input(i,:))/2;
+	endif
+endfor
+
+if sum(abs(x-pt))<25
+	h=0
+endif
+if sum(abs(y-pt))<25
+	h=1
+endif
+if sum(abs(z-pt))<25
+	h=2
+endif
+
+end
